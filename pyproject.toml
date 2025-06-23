@@ -32,7 +32,6 @@ dependencies = [
     "pyyaml",
     "mediapy",
     "wandb",
-    "torch>=2.2.1",
     "seaborn",
     "safetensors",
     "python-box",
