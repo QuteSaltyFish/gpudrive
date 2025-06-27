@@ -81,7 +81,7 @@ for obj in traffic_scene["objects"]:
             break
 
     # break
-traffic_scene["objects"] = []
+# traffic_scene["objects"] = []
 traffic_scene["metadata"]["sdc_track_index"] = -1
 traffic_scene["metadata"]['tracks_to_predict'] = []
 for road in traffic_scene['roads']:
