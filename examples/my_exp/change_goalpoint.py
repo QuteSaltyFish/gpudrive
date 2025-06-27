@@ -81,19 +81,23 @@ for obj in traffic_scene["objects"]:
             break
 
     # break
-traffic_scene["objects"] = new_objs
+traffic_scene["objects"] = []
 traffic_scene["metadata"]["sdc_track_index"] = -1
 traffic_scene["metadata"]['tracks_to_predict'] = []
-pd.Series(
-    [
-        traffic_scene["objects"][idx]["type"]
-        for idx in range(len(traffic_scene["objects"]))
-    ]
-).value_counts().plot(kind="bar", rot=45, color=cmap)
-plt.title(
-    f'Distribution of road objects in traffic scene. Total # objects: {len(traffic_scene["objects"])}'
-)
-plt.show()
+for road in traffic_scene['roads']:
+    # types.add(road['type'])
+    if road['type'] == 'road_line':
+        road['type'] = 'road_edge'
+# pd.Series(
+#     [
+#         traffic_scene["objects"][idx]["type"]
+#         for idx in range(len(traffic_scene["objects"]))
+#     ]
+# ).value_counts().plot(kind="bar", rot=45, color=cmap)
+# plt.title(
+#     f'Distribution of road objects in traffic scene. Total # objects: {len(traffic_scene["objects"])}'
+# )
+# plt.show()
 # traffic_scene['metadata'] = {}
 data_path = "data/exp/tfrecord-00005-of-00150_84_changed_goal.json"
 json.dump(traffic_scene, open(data_path, "w"))
@@ -102,5 +106,12 @@ json.dump(traffic_scene, open(data_path, "w"))
 # Run the following command to visualize the scene with changed goal points
 
 # %%
-
+types = set()
+for road in traffic_scene['roads']:
+    types.add(road['type'])
+    if road['type'] == 'road_line':
+        road['type'] = 'road_edge'
+# traffic_scene['roads'][0]['type']
+# %%
+types
 # %%
