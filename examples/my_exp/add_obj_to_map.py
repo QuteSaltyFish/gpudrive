@@ -36,12 +36,12 @@ traffic_scene["metadata"]['tracks_to_predict'] = []
 types = set()
 for road in traffic_scene['roads']:
     types.add(road['type'])
-    if road['type'] == 'lane':
+    if road['id'] == 634:
     #     road['type'] = 'road_edge'
         lane = road
 print(lane)
 
-lane['geometry'] =  lane['geometry'][:4]
+lane['geometry'] =  lane['geometry'][:10]
 obj = {}
 obj["type"] = "vehicle"
 obj['id'] = 1
